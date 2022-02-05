@@ -17,7 +17,7 @@ def main():
 	write_to_file(df)
 
 def write_to_file(df):
-	df.to_csv(FULL_DATA_FILE, index=False, encoding='utf-8-sig')
+	df.to_csv(FULL_DATA_FILE, index=False, encoding="utf-8-sig")
 
 
 if __name__ == "__main__":
