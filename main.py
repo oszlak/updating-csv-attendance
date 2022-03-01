@@ -10,10 +10,16 @@ def main():
 	#extracting the ids from the chat file
 	id_lst = id_sep.sep_id(CHAT_FILE)
 	#opening the csv file with all the names and ids of the class
+	counter = 0
 	with open(NAMES_FILE, encoding="utf-8") as f:
 		df = pd.read_csv(f)
 	for id_num in id_lst:
-		df.at[df['תעודת זהות'].astype(str) == id_num, "נוכח"] = 'V'
+		for id_num_df in df["תעודת זהות"]:
+			if str(id_num_df).endswith(id_num[-4:]):
+				df.loc[df["תעודת זהות"] == id_num_df,"נוכח"] = "V"
+				counter += 1
+		#df.at[df['תעודת זהות'].astype(str), "נוכח"] = 'V'
+	print(counter)
 	write_to_file(df)
 
 def write_to_file(df):
